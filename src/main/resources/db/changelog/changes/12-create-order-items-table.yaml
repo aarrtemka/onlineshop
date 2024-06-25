@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_order_items_table
+      author: arsen_mehdalskyi
+      changes:
+        - createTable:
+            tableName: order_items
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: order_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_orders_items
+                    references: orders(id)
+                    nullable: false
+              - column:
+                  name: product_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_products_order_item
+                    references: products(id)
+                    nullable: false
+              - column:
+                  name: quantity
+                  type: integer
+                  constraints:
+                    nullable: false
+              - column:
+                  name: price
+                  type: decimal(10,2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_deleted
+                  type: boolean
+                  constraints:
+                    nullable: false

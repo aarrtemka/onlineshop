@@ -1,0 +1,22 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_product_category_table
+      author: arsen_mehdalskyi
+      changes:
+        - createTable:
+            tableName: product_category
+            columns:
+              - column:
+                  name: product_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_product_id
+                    references: products(id)
+                    nullable: false
+              - column:
+                  name: category_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_category_id
+                    references: categories(id)
+                    nullable: false
